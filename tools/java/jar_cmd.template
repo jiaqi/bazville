@@ -1,0 +1,5 @@
+#!/bin/sh
+
+output_file=`pwd`/%{output_file}
+cd %{root_dir}
+jar cvf $output_file *

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+catalina_home="%{catalina_home}"
+catalina_base="%{catalina_base}"
+
+#webapp_dir="$catalina_base/webapps/%{webapp_name}"
+#if [[ %{delete_dir} && -d "$webapp_dir" ]]; then
+#  echo "Delete existing webapp directory $webapp_dir."
+#  rm -rf $webapp_dir
+#fi
+
+%{java_cmd} \
+  -cp $catalina_home/bin/bootstrap.jar:$catalina_home/bin/tomcat-juli.jar \
+  -Dcatalina.home=$catalina_home \
+  -Dcatalina.base=$catalina_base \
+  %{jvm_opts} \
+  org.apache.catalina.startup.Bootstrap
