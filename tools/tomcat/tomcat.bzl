@@ -2,6 +2,8 @@
 Bazel build rule for running war file with tomcat.
 """
 
+load("//tools/base:tomcat_constants.bzl", "TOMCAT_VERSIONS")
+
 def _link_file(ctx, src_path, dest_path):
     dest_file = ctx.actions.declare_symlink(dest_path)
     ctx.actions.symlink(output = dest_file, target_path = src_path)
@@ -25,7 +27,6 @@ def _create_webapp(ctx):
         command = " && ".join(commands),
     )
 
-    # return _link_file(ctx, ctx.file.app_dir.path, dest_dir), ctx.file.app_dir
     return dest_file, ctx.file.app_dir
 
 def _create_tomcat_base(ctx):
@@ -124,12 +125,6 @@ _tomcat_binary = rule(
     executable = True,
 )
 
-TOMCAT_BUNDLES = {
-    7: ["//tools/tomcat:tomcat-7", "apache-tomcat-7.0.104"],
-    8: ["//tools/tomcat:tomcat-8", "apache-tomcat-8.5.56"],
-    9: ["//tools/tomcat:tomcat-9", "apache-tomcat-9.0.36"],
-}
-
 def tomcat_binary(
         name,
         visibility = None,
@@ -137,6 +132,7 @@ def tomcat_binary(
         app_dir = None,
         app_name = "ROOT",
         version = 9,
+        tomcat_bundle = None,
         jvm_opts = []):
     if war_file == None and app_dir == None:
         fail("war_file or app_dir must be specified.")
@@ -144,9 +140,12 @@ def tomcat_binary(
     if war_file != None and app_dir != None:
         fail("Only one of war_file and app_dir should be specified.")
 
-    tomcat_bundle = TOMCAT_BUNDLES[version]
+    path = TOMCAT_VERSIONS[version]
+    if path == None:
+        fail("Invalid version %s, these versions are acceptable: %s." % (version, TOMCAT_VERSIONS.keys))
+
     if tomcat_bundle == None:
-        fail("Invalid version %s, these versions are acceptable: %s." % (version, TOMCAT_BUNDLES.keys))
+        tomcat_bundle = "//tools/tomcat:tomcat_%s" % version
 
     return _tomcat_binary(
         name = name,
@@ -156,6 +155,6 @@ def tomcat_binary(
         app_dir = app_dir,
         is_app_dir = (war_file == None),
         jvm_opts = jvm_opts,
-        tomcat_bundle = tomcat_bundle[0],
-        tomcat_bundle_path = tomcat_bundle[1],
+        tomcat_bundle = tomcat_bundle,
+        tomcat_bundle_path = path,
     )
