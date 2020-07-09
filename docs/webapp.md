@@ -39,7 +39,6 @@ it `bazel` build creates a web application file structure.
 ```
 $ bazel build java/java/com/my/webapp:webapp
 ...
-INFO: Analyzed target //java/org/cyclopsgroup/aoj/server:webapp (0 packages loaded, 0 targets configured).
 INFO: Found 1 target...
 Target //java/java/com/my/webapp:webapp up-to-date:
   bazel-bin/java/java/com/my/webapp/webapp
