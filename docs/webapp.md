@@ -1,9 +1,32 @@
-# Bazville > webapp
+# bazville > webapp
 
 The `webapp` build rule create a file directory structure that reflects a
 standard Java web application.
 
-## Relative paths
+## API
+
+```
+load("@bazville//tools/java:webapp.bzl", "webapp")
+webapp(
+    name = <build target name>,
+    visibility = [build target visibility],
+    srcs = [list of build targets and files],
+    deps = <list of jar dependencies>,
+)
+```
+
+### srcs (required)
+
+Static files and build targets with output files to include in the web
+application. The source can be relative or absolute build targets, which will
+be explained later.
+
+### deps (optional)
+
+The java_library or java_binary dependencies. The specified jar and all the
+transitive dependencies are copied into `<webapp_root>/WEB-INF/lib` directory.
+
+## Relative source
 
 In a directory that looks like below
 
@@ -21,8 +44,6 @@ java/com/my/webapp
 the `BUILD` file defines the files to include in the web application,
 
 ```
-load("@bazville//tools/java:webapp.bzl", "webapp")
-
 webapp(
     name = "webapp",
     srcs = glob(["WEB-INF/**"]) + [
@@ -54,7 +75,7 @@ bazel-bin/java/java/com/my/webapp/webapp
 │   │   └── index.jsp -> ...
 ```
 
-## Absolute paths
+## Absolute source
 
 The `webapp` rule can also include static resource specified with absolute
 build targets. In such case files are added under web application root
