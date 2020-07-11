@@ -1,8 +1,5 @@
 # bazville > webapp
 
-The `webapp` build rule create a file directory structure that reflects a
-standard Java web application.
-
 ## API
 
 ```
@@ -15,16 +12,21 @@ webapp(
 )
 ```
 
-### srcs (required)
+The `webapp` build rule create a file directory structure that reflects a
+standard Java web application.
 
-Static files and build targets with output files to include in the web
-application. The source can be relative or absolute build targets, which will
-be explained later.
+## Arguments
 
-### deps (optional)
+| Name | Required? | Value | Purpose | Examples |
+| ---- | --------- | ----- | ------- | -------- |
+| `name` | Yes | String | The name of the build target required by bazel. | `"myapp"` |
+| `visibility` | No | Label array | Visibility to other build target, supported by bazel. | `[ "//visibility:public" ]` |
+| `srcs` | Yes | Label array | Files and build targets to include in this web application. | `glob(["WEB-INF/**"]) +  [":favicon.png"]]` |
+| `deps` | No | Label array | Java dependencies to include in this web application under `WEB-INF/lib`. | `[ ":a_java_library", "//third_party/java/servlet-api" ]` |
 
-The java_library or java_binary dependencies. The specified jar and all the
-transitive dependencies are copied into `<webapp_root>/WEB-INF/lib` directory.
+Depend on whether the files of `srcs` is relative path or absolute, the actual
+directory of files under the web application root can be different. Please
+continue to read to learn more.
 
 ## Relative source
 
