@@ -23,7 +23,7 @@ standard Java web application.
 
 Java dependencies to include in this web application under `WEB-INF/lib`.
 
-### src
+### srcs
 
 Depend on whether the files of `srcs` is relative path or absolute, the actual
 directory of files under the web application root can be different. Please
