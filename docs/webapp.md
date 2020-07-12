@@ -14,7 +14,7 @@ standard Java web application.
 
 | Name | Required? | Type | Default value | Examples |
 | ---- | --------- | ---- | ------------- | -------- |
-| `name` | Yes | String | | `"myapp"` |
+| `name` | Yes | String | | `myapp` |
 | `visibility` | No | Label array | `[]` | `[ "//visibility:public" ]` |
 | `srcs` | Yes | Label array | | `glob(["WEB-INF/**"]) +  [":favicon.png"]]` |
 | `deps` | No | Label array | `[]` | `[ ":a_java_library", "//third_party/java/servlet-api" ]` |
