@@ -1,15 +1,10 @@
-# bazville > webapp
+# [bazville](../README.md) > webapp
 
 ## API
 
 ```
 load("@bazville//tools/java:webapp.bzl", "webapp")
-webapp(
-    name = <build target name>,
-    visibility = [build target visibility],
-    srcs = [list of build targets and files],
-    deps = <list of jar dependencies>,
-)
+webapp(name, visibility, srcs, deps)
 ```
 
 The `webapp` build rule create a file directory structure that reflects a
@@ -17,12 +12,18 @@ standard Java web application.
 
 ## Arguments
 
-| Name | Required? | Value | Purpose | Examples |
-| ---- | --------- | ----- | ------- | -------- |
-| `name` | Yes | String | The name of the build target required by bazel. | `"myapp"` |
-| `visibility` | No | Label array | Visibility to other build target, supported by bazel. | `[ "//visibility:public" ]` |
-| `srcs` | Yes | Label array | Files and build targets to include in this web application. | `glob(["WEB-INF/**"]) +  [":favicon.png"]]` |
-| `deps` | No | Label array | Java dependencies to include in this web application under `WEB-INF/lib`. | `[ ":a_java_library", "//third_party/java/servlet-api" ]` |
+| Name | Required? | Type | Default value | Examples |
+| ---- | --------- | ---- | ------------- | -------- |
+| `name` | Yes | String | | `"myapp"` |
+| `visibility` | No | Label array | `[]` | `[ "//visibility:public" ]` |
+| `srcs` | Yes | Label array | | `glob(["WEB-INF/**"]) +  [":favicon.png"]]` |
+| `deps` | No | Label array | `[]` | `[ ":a_java_library", "//third_party/java/servlet-api" ]` |
+
+### deps
+
+Java dependencies to include in this web application under `WEB-INF/lib`.
+
+### src
 
 Depend on whether the files of `srcs` is relative path or absolute, the actual
 directory of files under the web application root can be different. Please
