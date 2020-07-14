@@ -4,13 +4,28 @@
 
 ```
 load("@bazville//tools/tomcat:tomcat.bzl", "tomcat_binary")
-tomcat_binary(name, visibility, app_dir, app_name, version, tomcat_bundle, jvm_opts)
+tomcat_binary(
+    name,
+    visibility,
+    app_dir,
+    app_name,
+    version,
+    tomcat_bundle,
+    jvm_opts
+)
 ```
 
 The build rule `tomcat_binary` runs a given `webapp` build target, or any build
 target that produces a valid web application directory, with tomcat. It does so
 by creating a valid `catalina base` file structure and running a Java process
 with JVM options that point to it.
+
+The build rule requires symlink so this following line needs to be added to the
+`.bazelrc` file under workspace root.
+
+```
+build --experimental_allow_unresolved_symlinks
+```
 
 ## Arguemnts
 
