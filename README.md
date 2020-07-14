@@ -7,8 +7,6 @@ Bazville offers several [Bazel](https://bazel.build) build rules that Bazel does
 - [Java web application](docs/webapp.md)
 - [Run web application with Tomcat](docs/tomcat.md)
 - [Jar and war](docs/jar.md)
-- [Download with wget](docs/wget.md)
-- [Untar](docs/untar.md)
 
 ## Installation
 
