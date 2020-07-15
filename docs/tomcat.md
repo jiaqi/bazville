@@ -34,8 +34,8 @@ build --experimental_allow_unresolved_symlinks
 | `name` | Yes | String | | `mytomcatserver` |
 | `visibility` | No | Label array | `[]` | `[ "//visibility:public" ]` |
 | `app_dir` | Yes | Label | | `:mywebapp` |
-| `app_name` | No | string | `ROOT` | `myapp` |
-| `version` | No | number | 9 | `8` |
+| `app_name` | No | String | `ROOT` | `myapp` |
+| `version` | No | Number | `9` | `8` |
 | `tomcat_bundle` | Yes | Label | | `@bazville//tools/tomcat:tomcat_8` |
 | `jvm_opts` | No | String array | `[]` | `["-Dval=value", "-ea"]` |
 
