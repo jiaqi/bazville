@@ -75,4 +75,5 @@ decided to go ahead and create one.
 With bazville I was able to change the demo project
 [jiaqi/angular-on-java](https://github.com/jiaqi/angular-on-java) to build web
 application correctly without assuming it runs in appengine, and run it with
-Tomcat in bazel. This page compares bazville with rules_appengine.
+Tomcat in bazel. [This page](docs/vs_appengine.md) compares bazville with
+rules_appengine.
