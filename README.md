@@ -61,3 +61,18 @@ For more details, checkout [Java web application](docs/webapp.md) and
 Refer to [angular-on-java](https://github.com/jiaqi/angular-on-java) project
 for
 [a full example](https://github.com/jiaqi/angular-on-java/blob/master/java/org/cyclopsgroup/aoj/server/BUILD).
+
+## Context
+
+The official support of Java web application in Bazel is
+[bazelbuild/rules_appengine](https://github.com/bazelbuild/rules_appengine),
+which comes with a number of problems as discussed in
+[a blog post of mine](https://blog.cyclopsgroup.org/2020/03/spring-angular-and-other-reasons-i-like.html).
+After some effort I realized I can not manage to have appengine rule
+accurately serve my needs. Since there doesn't seem to be another option, I
+decided to go ahead and create one.
+
+With bazville I was able to change the demo project
+[jiaqi/angular-on-java](https://github.com/jiaqi/angular-on-java) to build web
+application correctly without assuming it runs in appengine, and run it with
+Tomcat in bazel. This page compares bazville with rules_appengine.
