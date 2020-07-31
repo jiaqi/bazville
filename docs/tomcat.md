@@ -76,13 +76,13 @@ The version of tomcat to run the application with. The value must be `7`, `8`,
 ### tomcat_bundle
 
 Due to the limitation of the implementation, `tomcat_binary` build rule
-requires user to specify the location of the installtion target for now.
+requires user to specify the location of the installation target for now.
 The value must be `@bazville//tools/tomcat:tomcat_9` when `version` is not
 specified. When version is specified, the value must change accordingly to
 `@bazville//tools/tomcat:tomcat_<version>`.
 
 The prefix `@bazville` comes from the `bazville` repository definition in the
-`WORKPLACE` file.
+`WORKSPACE` file.
 
 ```
 git_repository(
