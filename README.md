@@ -67,8 +67,8 @@ for
 The official support of Java web application in Bazel is
 [bazelbuild/rules_appengine](https://github.com/bazelbuild/rules_appengine),
 which comes with a number of problems as discussed in
-[a blog post of mine](https://blog.cyclopsgroup.org/2020/03/spring-angular-and-other-reasons-i-like.html).
-After some effort I realized I can not manage to have appengine rule
+[a blog post](https://blog.cyclopsgroup.org/2020/03/spring-angular-and-other-reasons-i-like.html).
+After some wrestling I realized I can not manage to have appengine rule
 accurately serve my needs. Since there doesn't seem to be another option, I
 decided to go ahead and create one.
 
