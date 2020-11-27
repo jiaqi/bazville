@@ -55,6 +55,12 @@ tomcat_binary(
 )
 ```
 
+Now you can run the web application with tomcat in bazel.
+
+```
+bazel run myapp:tomcat_server
+```
+
 For more details, checkout [Java web application](docs/webapp.md) and
 [Tomcat](docs/tomcat.md) pages.
 
