@@ -14,12 +14,12 @@ The latest version of bazville is `0.0.2`. Therefore to include bazville, add
 following to your `WORKSPACE` file.
 
 ```
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
-git_repository(
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
     name = "bazville",
-    remote = "https://github.com/jiaqi/bazville.git",
-    tag = "v_0_0_2",
+    sha256 = "902e1fee3d2cf2b1df479b486545c859d9ad3edecc0895559ca49bc58b10c9ad",
+    strip_prefix = "bazville-v_0_0_2",
+    urls = ["https://github.com/jiaqi/bazville/archive/v_0_0_2.zip"],
 )
 ```
 
