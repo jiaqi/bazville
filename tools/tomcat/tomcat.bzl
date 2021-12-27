@@ -5,8 +5,8 @@ Bazel build rule for running war file with tomcat.
 load("//tools/base:tomcat_constants.bzl", "TOMCAT_VERSIONS")
 
 def _link_file(ctx, src_path, dest_path):
-    dest_file = ctx.actions.declare_symlink(dest_path)
-    ctx.actions.symlink(output = dest_file, target_path = src_path)
+    dest_file = ctx.actions.declare_file(dest_path)
+    ctx.actions.symlink(output = dest_file, target = src_path)
     return dest_file
 
 def _create_webapp(ctx):
@@ -38,13 +38,13 @@ def _create_tomcat_base(ctx):
         output_files.append(_link_file(ctx, source, dest))
 
     context_xml = ctx.actions.declare_file("%s.tmp/conf/Catalina/localhost/%s.xml" % (ctx.label.name, ctx.attr.app_name))
-    ctx.actions.symlink(output = context_xml, target_file = ctx.file._context_xml)
+    ctx.actions.symlink(output = context_xml, target = ctx.file._context_xml)
     output_files.append(context_xml)
 
     webapp, webapp_input = _create_webapp(ctx)
     output_files += [webapp, webapp_input]
 
-    tomcat_base = ctx.actions.declare_symlink(ctx.label.name)
+    tomcat_base = ctx.actions.declare_directory(ctx.label.name)
     commands = [
         "mkdir -p %{b}",
         "cp -R %{b}.tmp/conf %{b}/conf",
